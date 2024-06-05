@@ -1,0 +1,13 @@
+= link_to 'Atrás', projects_path, class: "btn btn-secondary mt-4"
+
+%h2.text-xl.font-bold Historias de Usuario
+%ul
+  - @project.stories.each do |story|
+    %li
+      = link_to story.name, project_story_path(@project, story)
+      %p= story.description
+
+= link_to 'Crear Historia de Usuario', new_project_story_path(@project), class: "btn btn-primary mt-4"
+
+= link_to 'Eliminar Proyecto', project_path(@project), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger mt-4"
+

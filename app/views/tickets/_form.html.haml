@@ -1,0 +1,31 @@
+%h1= @story.name
+%p= @story.description
+
+%h2= action_name == 'new' ? 'Nuevo Ticket' : 'Editar Ticket'
+
+= form_with model: [@project, @story, @ticket], local: true do |form|
+  - if @ticket.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@ticket.errors.count, "error")} impidieron guardar el ticket:"
+      %ul
+        - @ticket.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = form.label :name
+    = form.text_field :name, class: "form-input mt-1 block w-full"
+
+  .field
+    = form.label :description
+    = form.text_area :description, class: "form-textarea mt-1 block w-full"
+
+  .field
+    = form.label :status
+    = form.text_field :status, class: "form-input mt-1 block w-full"
+
+  .field
+    = form.label :comments
+    = form.text_area :comments, class: "form-textarea mt-1 block w-full"
+
+  .actions
+    = form.submit 'Guardar Ticket', class: "btn btn-primary mt-4"

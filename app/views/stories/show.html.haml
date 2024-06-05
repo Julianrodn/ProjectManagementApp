@@ -1,0 +1,10 @@
+%h1= @story.name
+%p= @story.description
+
+%h2 Tickets asociados
+%ul
+  - @story.tickets.each do |ticket|
+    %li= link_to ticket.name, project_story_ticket_path(@project, @story, ticket)
+
+= link_to 'Crear Ticket', new_project_story_ticket_path(@project, @story), class: "btn btn-primary"
+

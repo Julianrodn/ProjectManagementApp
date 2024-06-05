@@ -1,0 +1,10 @@
+= link_to 'Atrás', project_story_path(@project, @story), class: "btn btn-secondary"
+
+%h1= @ticket.name
+%p= @ticket.description
+%p= "Estado: #{@ticket.status}"
+%p= @ticket.comments
+
+= link_to 'Editar', edit_project_story_ticket_path(@project, @story, @ticket), class: "btn btn-secondary"
+= link_to 'Eliminar', project_story_ticket_path(@project, @story, @ticket), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger"
+
