@@ -1,8 +1,8 @@
-= link_to 'Atrás', project_path(@project), class: 'btn btn-secondary'
+= link_to 'Atrás', project_story_path(@project, @story), class: 'btn btn-secondary'
 
-%h1 Nueva Historia de Usuario
+%h1 Editar Historia de Usuario
 
-= form_with(model: @story, url: project_stories_path(@project), local: true) do |form|
+= form_with(model: @story, url: project_story_path(@project, @story), method: :patch, local: true) do |form|
   - if @story.errors.any?
     #error_explanation
       %h2
@@ -20,4 +20,5 @@
     = form.text_area :description, class: "form-textarea mt-1 block w-full"
 
   .actions
-    = form.submit 'Crear Historia de Usuario', class: "btn btn-primary mt-4"
+    = form.submit 'Actualizar Historia de Usuario', class: "btn btn-primary mt-4"
+
