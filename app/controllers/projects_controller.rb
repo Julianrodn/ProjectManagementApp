@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
-  #before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!
 
   def index
-    @projects = Project.all
+    @projects = current_user.company.projects
   end
 
   def show
@@ -15,8 +15,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.company = current_user.company # Asumiendo que el proyecto está asociado a la compañía del usuario
-
+    @project.company = current_user.company
+    
     if @project.save
       redirect_to @project, notice: 'Proyecto creado exitosamente.'
     else

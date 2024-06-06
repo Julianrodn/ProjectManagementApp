@@ -1,26 +1,23 @@
 Rails.application.routes.draw do
-  get 'tickets/show'
-  get 'tickets/new'
-  get 'tickets/edit'
-  get 'tickets/create'
-  get 'tickets/update'
-  get 'tickets/destroy'
-  # Otras rutas...
-
-  # Rutas para los proyectos
+  # Rutas generadas por Devise para la autenticación de usuarios
+  devise_for :users, controllers: {
+    sessions: 'users/sessions' # Especifica el controlador personalizado para las sesiones de usuario
+  }
+  # Rutas para los proyectos y sus recursos anidados
   resources :projects do
     resources :stories do
       resources :tickets
     end
   end
 
-  # Otras rutas...
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Define la ruta raíz ("/")
   root 'home#index'
+
+  # Redirigir a los usuarios después del inicio de sesión a la ruta '/projects'
+  authenticated :user do
+    root to: 'projects#index', as: :authenticated_root
+  end
 end
 

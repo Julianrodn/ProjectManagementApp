@@ -30,6 +30,9 @@ gem "jbuilder"
 gem "haml-rails", "~> 2.0"
 gem 'html2haml', '~> 2.0'
 
+#Devise
+gem 'devise'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
