@@ -12,12 +12,10 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Define la ruta raíz ("/")
-  root 'home#index'
-
   # Redirigir a los usuarios después del inicio de sesión a la ruta '/projects'
-  authenticated :user do
-    root to: 'projects#index', as: :authenticated_root
-  end
+  root to: 'projects#index', as: :authenticated_root
+
+  # Define la ruta raíz ("/") para usuarios no autenticados
+  root to: 'devise/sessions#new', as: :unauthenticated_root
 end
 
