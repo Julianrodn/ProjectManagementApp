@@ -1,5 +1,5 @@
-%h1 Projects#new
-%p Find me in app/views/projects/new.html.erb
+= link_to 'Regresar a Proyectos', projects_path, class: "btn btn-secondary"
+
 %h1.text-2xl.font-bold Nuevo Proyecto
 
 = form_with model: @project, local: true do |form|
