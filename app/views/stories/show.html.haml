@@ -8,4 +8,6 @@
     %li= link_to ticket.name, project_story_ticket_path(@project, @story, ticket)
 
 = link_to 'Crear Ticket', new_project_story_ticket_path(@project, @story), class: "btn btn-primary"
+= button_to 'Eliminar Historia de Usuario', project_story_path(@project, @story), method: :delete, class: "btn btn-danger", onclick: "return confirm('¿Estás seguro de que deseas eliminar esta historia de usuario?');"
+= link_to 'Editar Historia de Usuario', edit_project_story_path(@project, @story), class: 'btn btn-secondary'
 

@@ -20,12 +20,13 @@
     = form.text_area :description, class: "form-textarea mt-1 block w-full"
 
   .field
-    = form.label :status
-    = form.text_field :status, class: "form-input mt-1 block w-full"
-
-  .field
     = form.label :comments
     = form.text_area :comments, class: "form-textarea mt-1 block w-full"
 
+  .field
+    = form.label :status
+    = form.select :status, options_for_select([['Activo', 'Activo'], ['En Proceso', 'En Proceso'], ['Finalizado', 'Finalizado']], @ticket.status), {}, class: 'form-select mt-1 block w-full'
+
   .actions
     = form.submit 'Guardar Ticket', class: "btn btn-primary mt-4"
+

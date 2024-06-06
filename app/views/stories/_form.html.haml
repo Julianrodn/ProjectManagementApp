@@ -1,12 +1,7 @@
-= link_to 'Atrás', project_path(@project), class: 'btn btn-secondary'
-
-%h1 Nueva Historia de Usuario
-
 = form_with(model: @story, url: project_stories_path(@project), local: true) do |form|
   - if @story.errors.any?
     #error_explanation
-      %h2
-        = "#{pluralize(@story.errors.count, "error")} impidieron guardar la historia de usuario:"
+      %h2= "#{pluralize(@story.errors.count, "error")} impidieron guardar la historia de usuario:"
       %ul
         - @story.errors.full_messages.each do |message|
           %li= message
@@ -20,4 +15,5 @@
     = form.text_area :description, class: "form-textarea mt-1 block w-full"
 
   .actions
-    = form.submit 'Crear Historia de Usuario', class: "btn btn-primary mt-4"
+    = form.submit 'Aceptar', class: "btn btn-primary mt-4"
+

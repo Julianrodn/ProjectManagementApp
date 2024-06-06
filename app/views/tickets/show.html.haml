@@ -6,5 +6,7 @@
 %p= @ticket.comments
 
 = link_to 'Editar', edit_project_story_ticket_path(@project, @story, @ticket), class: "btn btn-secondary"
-= link_to 'Eliminar', project_story_ticket_path(@project, @story, @ticket), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger"
+= button_to 'Eliminar', project_story_ticket_path(@project, @story, @ticket), method: :delete, class: "btn btn-danger", onclick: "return confirm('¿Estás seguro de que deseas eliminar este ticket?');"
+
+
 

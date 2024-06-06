@@ -11,14 +11,18 @@ class StoriesController < ApplicationController
 
   def create
     @story = @project.stories.new(story_params)
-    if @story.save
-      redirect_to project_path(@project), notice: 'Historia de usuario creada exitosamente.'
-    else
-      render :new
+
+    ActiveRecord::Base.transaction do
+      if @story.save
+        redirect_to new_project_story_ticket_path(@project, @story), notice: 'Story created successfully. Please create the first ticket.'
+      else
+        render :new
+      end
     end
   end
 
   def edit
+    @story = Story.find(params[:id])
   end
 
   def update
@@ -30,6 +34,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+    @story.tickets.destroy_all
     @story.destroy
     redirect_to project_path(@project), notice: 'Historia de usuario eliminada exitosamente.'
   end

@@ -18,11 +18,14 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = @story.tickets.build(ticket_params)
-    if @ticket.save
-      redirect_to project_story_ticket_path(@project, @story, @ticket), notice: 'Ticket creado exitosamente.'
-    else
-      render :new
+    @ticket = @story.tickets.new(ticket_params)
+
+    ActiveRecord::Base.transaction do
+      @ticket.save!
+      redirect_to project_story_path(@project, @story), notice: 'Ticket created successfully.'
+    rescue ActiveRecord::RecordInvalid
+      @story.destroy
+      redirect_to new_project_story_path(@project), alert: 'Ticket creation failed. Please try again.'
     end
   end
 
@@ -35,6 +38,20 @@ class TicketsController < ApplicationController
   end
 
   def destroy
+    @ticket = Ticket.find(params[:id])
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
+    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
     @ticket.destroy
     redirect_to project_story_path(@project, @story), notice: 'Ticket eliminado exitosamente.'
   end
