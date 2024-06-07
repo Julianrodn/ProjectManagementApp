@@ -1,13 +1,21 @@
-= link_to 'Atrás', projects_path, class: "btn btn-secondary mt-4"
+%div.container.mx-auto.p-8
+  %div.flex.items-center.justify-between.bg-indigo-700.p-4.rounded
+    %h2.text-xl.font-bold.text-white= "Historias de Usuario||#{@project.name}"
 
-%h2.text-xl.font-bold Historias de Usuario
-%ul
-  - @project.stories.each do |story|
-    %li
-      = link_to story.name, project_story_path(@project, story)
-      %p= story.description
+    = link_to 'Atrás', projects_path, class: 'text-white hover:text-pink-200'
 
-= link_to 'Crear Historia de Usuario', new_project_story_path(@project), class: "btn btn-primary mt-4"
+  %div.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-4.mt-4
+    - @project.stories.each do |story|
+      %div.block.max-w-sm.p-6.bg-indigo-100.border.border-gray-200.rounded-lg.shadow.hover:bg-gray-100.dark:bg-gray-800.dark:border-gray-700.dark:hover:bg-gray-700
+        = link_to project_story_path(@project, story) do
+          %h5.mb-2.text-2xl.font-bold.tracking-tight.text-gray-900.dark:text-white= story.name
+          %p.font-normal.text-gray-700.dark:text-gray-400= story.description
 
-= link_to 'Eliminar Proyecto', project_path(@project), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-danger mt-4"
+  %div.flex.justify-between.mt-8
+    = link_to new_project_story_path(@project), class: "flex items-center justify-center w-full max-w-xs bg-indigo-700 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded text-center" do
+      %img.w-5.h-5.mr-2{ src: "https://img.icons8.com/?size=256&id=Y2mKhNPGS0Cd&format=png", alt: "Crear Historia" }
+      Crear Historia de Usuario
+    = link_to project_path(@project), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "flex items-center justify-center w-full max-w-xs bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded text-center" do
+      %img.w-5.h-5.mr-2{ src: "https://img.icons8.com/?size=256&id=LdszTuzBUPPp&format=png", alt: "Eliminar Proyecto" }
+      Eliminar Proyecto
 

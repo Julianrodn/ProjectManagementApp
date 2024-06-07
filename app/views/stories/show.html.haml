@@ -1,13 +1,23 @@
-= link_to 'Volver al proyecto', project_path(@project), class: 'btn btn-primary'
-%h1= @story.name
-%p= @story.description
+%div.container.mx-auto.p-8
+  %div.flex.items-center.justify-between.bg-indigo-700.p-4.rounded
+    %h2.text-xl.font-bold.text-white= @story.name
+    = link_to 'Volver al proyecto', project_path(@project), class: 'text-white hover:text-pink-200'
 
-%h2 Tickets asociados
-%ul
-  - @story.tickets.each do |ticket|
-    %li= link_to ticket.name, project_story_ticket_path(@project, @story, ticket)
+  %h2.text-2xl.font-bold.mt-4.text-gray-900.dark:text-black Tickets asociados
 
-= link_to 'Crear Ticket', new_project_story_ticket_path(@project, @story), class: "btn btn-primary"
-= button_to 'Eliminar Historia de Usuario', project_story_path(@project, @story), method: :delete, class: "btn btn-danger", onclick: "return confirm('¿Estás seguro de que deseas eliminar esta historia de usuario?');"
-= link_to 'Editar Historia de Usuario', edit_project_story_path(@project, @story), class: 'btn btn-secondary'
+  %div.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-4.mt-4
+    - @story.tickets.each do |ticket|
+      = link_to project_story_ticket_path(@project, @story, ticket), class: "block max-w-sm p-6 bg-indigo-100 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do
+        %h5.mb-2.text-2xl.font-bold.tracking-tight.text-gray-900.dark:text-white= ticket.name
+
+  %div.flex.justify-between.mt-8
+    = link_to new_project_story_ticket_path(@project, @story), class: "flex items-center justify-center w-full max-w-xs bg-indigo-700 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded text-center" do
+      %img.w-5.h-5.mr-2{ src: "https://img.icons8.com/?size=256&id=Y2mKhNPGS0Cd&format=png", alt: "Crear Ticket" }
+      Crear Ticket
+    = button_to project_story_path(@project, @story), method: :delete, class: "flex items-center justify-center w-full max-w-xs bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded text-center", onclick: "return confirm('¿Estás seguro de que deseas eliminar esta historia de usuario?');" do
+      %img.w-5.h-5.mr-2{ src: "https://img.icons8.com/?size=256&id=LdszTuzBUPPp&format=png", alt: "Eliminar Historia" }
+      Eliminar Historia de Usuario
+    = link_to edit_project_story_path(@project, @story), class: "flex items-center justify-center w-full max-w-xs bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded text-center" do
+      %img.w-5.h-5.mr-2{ src: "https://img.icons8.com/?size=256&id=88sXsrqGPpa0&format=png", alt: "Editar Historia" }
+      Editar Historia de Usuario
 
