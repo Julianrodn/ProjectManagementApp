@@ -39,19 +39,6 @@ class TicketsController < ApplicationController
 
   def destroy
     @ticket = Ticket.find(params[:id])
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
-    puts @ticket.id # Agrega este puts para verificar si el id está llegando correctamente
     @ticket.destroy
     redirect_to project_story_path(@project, @story), notice: 'Ticket eliminado exitosamente.'
   end
@@ -71,7 +58,7 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:name, :description, :status)
+    params.require(:ticket).permit(:name, :description, :comments, :status)
   end
 end
 
