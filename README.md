@@ -1,24 +1,54 @@
-# README
+# Project Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple project manager developed in Ruby on Rails. It allows users to create projects, add user stories, and manage tickets associated with each story.
 
-Things you may want to cover:
+## Features
+* Creation, editing, and deletion of projects.
+* Adding, editing, and deleting user stories within a project.
+* Management of tickets associated with each user story.
+* User authentication with Devise.
+* Association of users with a company.
 
-* Ruby version
+## Technologies Used
+* Ruby on Rails
+* HTML/Tailwind CSS
+* JavaScript
+* Devise
+* PostgreSQL
 
-* System dependencies
+## Installation
+Clone this repository to your local machine:
+```bash
+git clone https://github.com/your-username/project-manager.git
+```
 
-* Configuration
+Install Ruby dependencies:
+```bash
+bundle install
+```
 
-* Database creation
+Install JavaScript dependencies:
+```bash
+yarn install
+```
 
-* Database initialization
+## Database
+Create the database and run migrations:
+```bash
+rails db:create
+rails db:migrate
+```
 
-* How to run the test suite
+If you want to seed the database with example data, you can run:
+```bash
+rails db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Running the Project
 
-* Deployment instructions
+To run the development server, use the following command:
+```bash
+rails server
+```
 
-* ...
+Then, open your web browser and go to http://localhost:3000 to see the application in action.
